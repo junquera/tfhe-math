@@ -18,7 +18,7 @@ $(PREFIX)/include:
 	mkdir -p $(PREFIX)/include
 
 $(PREFIX)/include/*.h: $(PREFIX)/include
-	cp -r tfhe-math $(PREFIX)/include/ && find $(PREFIX)/include/ -not -name '*.h'
+	cp -r tfhe-math $(PREFIX)/include/ && find $(PREFIX)/include/ -type f -not -name '*.h' -exec rm {} \;
 
 arithmetic.o:
 	$(CC) $(CFLAGS) -c tfhe-math/arithmetic.cpp -o arithmetic.o
