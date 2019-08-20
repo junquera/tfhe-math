@@ -23,7 +23,7 @@ Math library for TFHE.
 ```
 @misc{tfhe-math,
     title = {{TFHE} {Math} Library},
-    howpublished = {\url{https://gitlab.com/juquera/thfe-math}},
+    howpublished = {\url{https://gitlab.com/junquera/tfhe-math}},
     author  = {Javier Junquera},
     month = august,
     year = 2019,
