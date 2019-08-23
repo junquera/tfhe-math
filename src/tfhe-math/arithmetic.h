@@ -41,4 +41,7 @@ void reescala(LweSample* result, const LweSample* a, const int nb_bits_result, c
 
 int64_t float2hint(float i, int float_bits);
 float hint2float(int64_t i, int float_bits);
+
+void num2lwe(LweSample* result, const int64_t n, const int float_bits, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk);
+
 #endif

@@ -864,3 +864,17 @@ trabajar con criptografía Homomórfica, con float_bits BITS de precisión
 float hint2float(int64_t i, int float_bits){
   return i/pow(2, float_bits);
 }
+
+
+/**
+  Save number to LweSample (like bootsCONSTANT)
+*/
+void num2lwe(LweSample* result, const int64_t n, const int float_bits, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk){
+
+  int64_t n_plain = float2hint(n, float_bits);
+
+  for(int ci=0; ci < nb_bits; ci++){
+    bootsCONSTANT(&result[ci], (n_plain>>ci)&1, bk);
+  }
+
+}
