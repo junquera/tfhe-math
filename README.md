@@ -1,3 +1,5 @@
+![](doc/logo.png)
+
 # TFHE Math
 
 Math library for TFHE.
