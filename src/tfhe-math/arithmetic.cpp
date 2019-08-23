@@ -15,29 +15,23 @@ void is_negative(LweSample* result, const LweSample* a, const int nb_bits, const
 
 // Devuelve -a
 void negativo(LweSample* result, const LweSample* a, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk){
-  LweSample* restando = new_gate_bootstrapping_ciphertext_array(nb_bits, bk->params);
-  LweSample* uno = new_gate_bootstrapping_ciphertext_array(nb_bits, bk->params);
-  LweSample* aux = new_gate_bootstrapping_ciphertext_array(nb_bits, bk->params);
 
-  for(int i=0; i < nb_bits; i++){
-    bootsCONSTANT(&restando[i], 0, bk);
-    bootsCONSTANT(&uno[i], 0, bk);
-    bootsCONSTANT(&aux[i], 0, bk);
-  }
-  bootsCONSTANT(&uno[0], 1, bk);
+  LweSample* ha_cambiado = new_gate_bootstrapping_ciphertext_array(2, bk->params);
+  LweSample* not_x = new_gate_bootstrapping_ciphertext_array(2, bk->params);
 
-  // b negativo
-  for(int i = 0; i < nb_bits; i++)
-    bootsNOT(&restando[i], &a[i], bk);
-  add(aux, restando, uno, nb_bits, bk);
-
-  for(int i=0; i < nb_bits; i++){
-    bootsCOPY(&result[i], &aux[i], bk);
+  for(int i = 0; i < 2; i++){
+    bootsCONSTANT(&ha_cambiado[i], 0, bk);
+    bootsCONSTANT(&not_x[i], 0, bk);
   }
 
-  delete_gate_bootstrapping_ciphertext_array(nb_bits, restando);
-  delete_gate_bootstrapping_ciphertext_array(nb_bits, uno);
-  delete_gate_bootstrapping_ciphertext_array(nb_bits, aux);
+  for(int i = 0; i < nb_bits; i++){
+    bootsNOT(&not_x[0], &a[i], bk);
+    bootsMUX(&result[i], &ha_cambiado[0], &not_x[0], &a[i], bk);
+    bootsOR(&ha_cambiado[0], &ha_cambiado[0], &a[i], bk);
+  }
+
+  delete_gate_bootstrapping_ciphertext_array(2, ha_cambiado);
+  delete_gate_bootstrapping_ciphertext_array(2, not_x);
 }
 
 // Returns a == b
