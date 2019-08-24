@@ -39,9 +39,38 @@ void entreDiez(LweSample* result, const LweSample* a, const int nb_bits, const T
 void u_reescala(LweSample* result, const LweSample* a, const int nb_bits_result, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk);
 void reescala(LweSample* result, const LweSample* a, const int nb_bits_result, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk);
 
+
+/*
+  Función para transformar un float a un entero para
+  trabajar con criptografía Homomórfica, con float_bits BITS de precisión
+
+  @param i  Value to convert
+  @param float_bits Bits asigned to the decimals
+                    AKA Times the numer will be multiplied
+                    by two: i << float_bits
+  @return i << float_bits
+*/
 int64_t float2hint(float i, int float_bits);
+
+/*
+  Función para recuperar un float de un entero tras
+  trabajar con criptografía Homomórfica, con float_bits BITS de precisión
+
+  @param i  Value to convert
+  @param float_bits Bits asigned to the decimals
+                    AKA Times the numer will be multiplied
+                    by two: i >> float_bits
+  @return i >> float_bits
+*/
 float hint2float(int64_t i, int float_bits);
 
+
+/**
+  Save number to LweSample (like bootsCONSTANT)
+
+  @param n Input number
+  @param float_bits Bits which should be protected for decimals
+*/
 void num2lwe(LweSample* result, const int64_t n, const int float_bits, const int nb_bits, const TFheGateBootstrappingCloudKeySet* bk);
 
 #endif
