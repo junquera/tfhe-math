@@ -5,6 +5,8 @@ CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$TFHE_PREFIX/include
 LIBRARY_PATH=$LIBRARY_PATH:$TFHE_PREFIX/lib
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TFHE_PREFIX/lib
 
+INSTALL_PATH=/usr/local
+
 PREFIX=../prefix
 
 CC=g++
@@ -13,6 +15,17 @@ TFHE_LIB=-ltfhe-fftw
 
 all: $(PREFIX)/lib/libtfhe-math.a $(PREFIX)/include/*.h
 	rm *.o
+
+install-lib: $(PREFIX)/lib/libtfhe-math.a
+	cp -r $(PREFIX)/lib/* $(INSTALL_PATH)/lib/
+
+install-include: $(PREFIX)/include/*.h
+	cp -r $(PREFIX)/include/* $(INSTALL_PATH)/include/
+
+install: all install-lib install-include
+	echo "Installed at "$(INSTALL_PATH)
+
+# uninstall
 
 $(PREFIX)/include:
 	mkdir -p $(PREFIX)/include
