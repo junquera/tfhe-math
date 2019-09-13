@@ -10,6 +10,8 @@ Library with mathematic operations for working with the HE library TFHE. By now,
 
 - Arithmetic operations in package `tfhe-math/arithmetic`
 
+It has been developed in the context of a university work, concretely my Master's Thesis.
+
 ## Dependencies
 
 - `tfhe` ([https://tfhe.github.io/tfhe/](https://tfhe.github.io/tfhe/)) and all its dependencies
