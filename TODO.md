@@ -1,0 +1,3 @@
+-[ ] cmake
+-[ ] Changelog
+-[ ] Implement numbers&float conversion with a custom class (like `LweNumber*`)
