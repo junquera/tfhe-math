@@ -60,7 +60,7 @@ Execution times grows with the numbers size like this:
 
 ## Acknowledgments
 
-To Phd. Alfonso Muñoz (@mindrypt), which was my mentor during the development of this work.
+To Phd. Alfonso Muñoz (@mindcrypt), which was my mentor during the development of this work.
 
 Thank you very much!
 
